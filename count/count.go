@@ -1,4 +1,4 @@
-package funcs
+package count
 
 import (
 	"bufio"

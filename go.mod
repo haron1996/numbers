@@ -1,3 +1,3 @@
-module github.com/haron1996/go-sms
+module github.com/haron1996/numbers
 
 go 1.22.0

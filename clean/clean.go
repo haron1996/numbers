@@ -1,15 +1,13 @@
-package funcs
+package clean
 
 import (
 	"encoding/csv"
 	"fmt"
 	"log"
 	"os"
-	"time"
 )
 
 func Clean(csvFile string) error {
-	startTime := time.Now()
 
 	file, err := os.Open(csvFile)
 	if err != nil {
@@ -61,8 +59,6 @@ func Clean(csvFile string) error {
 	}
 
 	writer.Flush()
-
-	log.Printf("Executed in %f seconds", time.Since(startTime).Seconds())
 
 	return nil
 }

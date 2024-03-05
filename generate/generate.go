@@ -1,16 +1,14 @@
-package funcs
+package generate
 
 import (
 	"encoding/csv"
 	"fmt"
-	"log"
 	"math/rand"
 	"os"
 	"time"
 )
 
 func GenAndSave(csvFile string, count int) error {
-	startTime := time.Now()
 
 	for i := 0; i < count; i++ {
 
@@ -44,8 +42,6 @@ func GenAndSave(csvFile string, count int) error {
 			return fmt.Errorf("failed to write to CSV: %v", err)
 		}
 	}
-
-	log.Printf("Took %f seconds to execute.", time.Since(startTime).Seconds())
 
 	return nil
 }

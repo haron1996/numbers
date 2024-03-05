@@ -3,31 +3,41 @@ package main
 import (
 	"log"
 
-	"github.com/haron1996/go-sms/funcs"
+	"github.com/haron1996/numbers/clean"
+	"github.com/haron1996/numbers/count"
+	"github.com/haron1996/numbers/generate"
+	"github.com/haron1996/numbers/random"
 )
 
 func main() {
 
-	count := 500000
+	c := 500000
 	csvFile := "numbers.csv"
-	// numRandomRecords := 10
+	numRandomRecords := 10
 
-	if err := funcs.GenAndSave(csvFile, count); err != nil {
+	if err := generate.GenAndSave(csvFile, c); err != nil {
 		log.Println(err)
 		return
 	}
 
-	// funcs.Clean(csvFile)
+	if err := clean.Clean(csvFile); err != nil {
+		log.Println(err)
+		return
+	}
 
-	total, err := funcs.CountTotalNumbers(csvFile)
+	total, err := count.CountTotalNumbers(csvFile)
 	if err != nil {
 		log.Println(err)
 		return
 	}
 
-	log.Printf("Total Numbers: %d", total)
+	log.Printf("Total numbers: %d", total)
 
-	// if err := funcs.SelectRandom(csvFile, numRandomRecords); err != nil {
-	// 	log.Println(err)
-	// }
+	records, err := random.SelectRandom(csvFile, numRandomRecords)
+	if err != nil {
+		log.Println(err)
+		return
+	}
+
+	log.Printf("%d records selected: %v", len(records), records)
 }
