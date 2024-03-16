@@ -8,7 +8,7 @@ import (
 
 func main() {
 
-	c := 500000
+	c := 1000000
 	csvFile := "numbers.csv"
 	// numRandomRecords := 10
 
