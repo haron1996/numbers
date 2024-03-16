@@ -41,7 +41,7 @@ func TestFindPhoneNumber(t *testing.T) {
 			}
 
 			if found != tt.want {
-				t.Errorf("got %t, want %t", found, tt.want)
+				t.Errorf("for input %s, got %t, want %t", tt.input, found, tt.want)
 			}
 		})
 	}
