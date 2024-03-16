@@ -14,7 +14,7 @@ func GenAndSave(csvFile string, count int) error {
 
 		r := rand.New(rand.NewSource(time.Now().UnixNano()))
 
-		prefixes := []string{"070", "071", "072", "074", "079"}
+		prefixes := []string{"070", "071", "072", "074", "079", "076"}
 
 		randomPrefix := prefixes[r.Intn(len(prefixes))]
 

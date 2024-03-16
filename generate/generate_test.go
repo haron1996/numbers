@@ -9,6 +9,7 @@ import (
 )
 
 func TestGenAndSave(t *testing.T) {
+
 	tempCSV := "test.csv"
 
 	defer remove.RemoveTempCSV(tempCSV, t)

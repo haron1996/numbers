@@ -8,6 +8,7 @@ import (
 )
 
 func TestCountTotalNumbers(t *testing.T) {
+
 	tempCSV := "test.csv"
 
 	defer remove.RemoveTempCSV(tempCSV, t)
