@@ -60,7 +60,7 @@ func InsertMobileNumbersToDB_Tx(csvFile string) {
 		}
 	}()
 
-	batchSize := 10000000
+	batchSize := 100000
 
 	batch := make([]string, 0, batchSize)
 

@@ -2,12 +2,10 @@ package generate
 
 import (
 	"context"
-	"fmt"
 	"log"
-	"math/rand"
-	"time"
 
 	sqlc "github.com/haron1996/numbers/db/sqlc"
+	"github.com/haron1996/numbers/utils/alternate"
 	"github.com/haron1996/numbers/viper"
 	"github.com/jackc/pgx/v5/pgxpool"
 )
@@ -37,7 +35,7 @@ func GenAndSaveToDB(count int) error {
 
 	for i := 0; i < count; i++ {
 
-		phoneNumber := generateAlternatePhoneNumber()
+		phoneNumber := alternate.GeneratePhoneNumber()
 
 		if len(phoneNumber) != 10 {
 			continue
@@ -53,22 +51,4 @@ func GenAndSaveToDB(count int) error {
 	log.Println("Insert Successful")
 
 	return nil
-}
-
-func generateAlternatePhoneNumber() string {
-	r := rand.New(rand.NewSource(time.Now().UnixNano()))
-	if r.Intn(2) == 0 {
-		return generate011PhoneNumber()
-	}
-	return generatePhoneNumber()
-}
-
-func generate011PhoneNumber() string {
-	r := rand.New(rand.NewSource(time.Now().UnixNano()))
-	randomSuffix := 1000000 + r.Intn(9000000)
-	phoneNumber := fmt.Sprintf("011%d", randomSuffix)
-	if len(phoneNumber) > 10 {
-		phoneNumber = phoneNumber[:10]
-	}
-	return phoneNumber
 }

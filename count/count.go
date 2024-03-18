@@ -3,6 +3,7 @@ package count
 import (
 	"bufio"
 	"fmt"
+	"log"
 	"os"
 )
 
@@ -24,6 +25,8 @@ func CountTotalNumbers(csvName string) (int, error) {
 	}
 
 	file.Close()
+
+	log.Printf("Total Rows: %d", len(fileLines))
 
 	return len(fileLines), nil
 }

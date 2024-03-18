@@ -60,5 +60,7 @@ func Clean(csvFile string) error {
 
 	writer.Flush()
 
+	log.Println("Duplicates removed successfully")
+
 	return nil
 }
