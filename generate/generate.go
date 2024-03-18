@@ -3,6 +3,7 @@ package generate
 import (
 	"encoding/csv"
 	"fmt"
+	"log"
 	"math/rand"
 	"os"
 	"time"
@@ -22,9 +23,9 @@ func GenAndSave(csvFile string, count int) error {
 
 	for i := 0; i < count; i++ {
 
-		phoneNumber := generatePhoneNumber()
+		phoneNumber := generateAlternatePhoneNumber()
 
-		if len(phoneNumber) < 10 {
+		if len(phoneNumber) != 10 {
 			continue
 		}
 
@@ -32,7 +33,11 @@ func GenAndSave(csvFile string, count int) error {
 		if err != nil {
 			return fmt.Errorf("failed to write to CSV: %v", err)
 		}
+
+		log.Printf("%s Saved to CSV", phoneNumber)
 	}
+
+	log.Println("Numbers Inserted to CSV Successfully")
 
 	return nil
 }
@@ -42,6 +47,8 @@ func generatePhoneNumber() string {
 	prefixes := []string{"070", "071", "072", "074", "079", "076"}
 	randomPrefix := prefixes[r.Intn(len(prefixes))]
 	randomSuffix := 100000000 + r.Intn(900000000)
-	phoneNumber := fmt.Sprintf("%s%d", randomPrefix, randomSuffix)[0:10]
+	randomSuffixStr := fmt.Sprintf("%09d", randomSuffix)
+	phoneNumber := fmt.Sprintf("%s%s", randomPrefix, randomSuffixStr)
+	phoneNumber = phoneNumber[:10]
 	return phoneNumber
 }
